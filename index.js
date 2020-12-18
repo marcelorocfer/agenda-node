@@ -22,7 +22,7 @@ app.get("/cadastro", (req, res) => {
 });
 
 app.post("/create", async (req, res) => {
-    let status = await appointmentService.Create(
+    let status = await AppointmentService.Create(
         req.body.name,
         req.body.email,
         req.body.description,
