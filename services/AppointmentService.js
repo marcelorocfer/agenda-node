@@ -23,6 +23,14 @@ class AppointmentService {
             return false;
         }
     }
+
+    async getAll(showFinished) {
+        if(showFinished) {
+            return await Appointment.find();
+        } else {
+            return await Appointment.find({ 'finished': false });
+        }
+    }
 }
 
 module.exports = new AppointmentService();

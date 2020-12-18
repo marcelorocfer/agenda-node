@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema</title>
-    <style rel="stylesheet"href="main.css"></style>
+    <link rel="stylesheet" href="main.css"/>
     <script src="main.js"></script>
 </head>
 <body>
@@ -12,12 +12,15 @@
 </body>
 
 <script>
+
     let element = document.getElementById("calendar");
     let calendar = new FullCalendar.Calendar(element, {
         initialView: 'dayGridMonth',
         locale: 'pt-br'
     });
+
     calendar.render();
+
 </script>
 
 </html>
