@@ -41,6 +41,15 @@ class AppointmentService {
             return appointments;
         }
     }
+
+    async GetById(id) {
+        try {
+            let event = await Appointment.findOne({ _id: id });
+            return event;
+        } catch(error) {
+            console.log(error);
+        }
+    }
 }
 
 module.exports = new AppointmentService();

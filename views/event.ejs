@@ -1,0 +1,9 @@
+<h1>Consulta: <%= appointment.description %></h1>
+<hr>
+<h4>Paciente: <%= appointment.name %></h4>
+<h4>E-mail: <%= appointment.email %></h4>
+<h4>CPF: <%= appointment.cpf %></h4>
+<hr>
+<% if(!appointment.finished) { %>
+<button>Finalizar Consulta</button>
+<% } %>
