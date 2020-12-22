@@ -1,0 +1,14 @@
+<h1>Consultas: </h1>
+<hr>
+<form action="" method="post">
+    <input type="search" id="search" name="search" placeholder="Digite o e-mail ou CPF do cliente.">
+    <button>Pesquisar</button>
+</form>
+<hr>
+<% apptmnts.forEach(apptmnts => { %>
+    <h2><%= apptmnts.description %></h2>
+    <h4>Paciente: <%= apptmnts.name %></h4>
+    <h4>E-mail: <%= apptmnts.email %></h4>
+    <h4>CPF: <%= apptmnts.cpf %></h4>
+    <hr>
+<% }) %>
