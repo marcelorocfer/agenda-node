@@ -2,7 +2,7 @@ const appointment = require("../models/Appointment");
 const mongoose = require("mongoose");
 const AppointmentFactory = require("../factories/AppointmentFactory");
 
-const Appointment = mongoose.model("Appointmente", appointment);
+const Appointment = mongoose.model("Appointment", appointment);
 
 class AppointmentService {
     async Create(name, email, description, cpf, date, time) {
@@ -58,6 +58,16 @@ class AppointmentService {
         } catch(error) {
             console.log(error);
             return false;
+        }
+    }
+
+    async Search(query) {
+        try {
+            let apptmnt = await Appointment.find().or([{ email: query }, { cpf: query }]);
+            return apptmnt;
+        } catch(error) {
+            console.log(error);
+            return [];
         }
     }
 }

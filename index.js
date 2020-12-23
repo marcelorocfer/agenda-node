@@ -55,7 +55,15 @@ app.post("/finish", async (req, res) => {
 });
 
 app.get("/list", async (req, res) => {
+
+    // await AppointmentService.Search("555.555.555-55");
+
     let apptmnts = await AppointmentService.getAll(true);
+    res.render("list", { apptmnts });
+});
+
+app.get("/searchresult", async (req, res) => {
+    let apptmnts = await AppointmentService.Search(req.query.search);
     res.render("list", { apptmnts });
 });
 
