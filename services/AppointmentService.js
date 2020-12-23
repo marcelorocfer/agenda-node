@@ -2,6 +2,7 @@ const appointment = require("../models/Appointment");
 const mongoose = require("mongoose");
 const AppointmentFactory = require("../factories/AppointmentFactory");
 const mailer = require("nodemailer");
+require("dotenv").config();
 
 const Appointment = mongoose.model("Appointment", appointment);
 
@@ -75,13 +76,12 @@ class AppointmentService {
 
     async SendNotification() {
         let apptmnts = await this.GetAll(false);
-
         let transporter = mailer.createTransport({
-            host: "smtp.mailtrap.io",
-            port: 25,
+            host: process.env.HOST,
+            port: process.env.PORT,
             auth: {
-                user: "53b2f3927a0b08",
-                pass: "e8752681d6dd9d"
+                user: process.env.USER,
+                pass: process.env.PASS
             }
         });
 
@@ -92,18 +92,17 @@ class AppointmentService {
 
             if(gap <= hour) {
                 if(!app.notified) {
-
                     await Appointment.findByIdAndUpdate(app.id, {notified: true});
 
                     transporter.sendMail({
                         from: '"Marcelo Rocha Ferreira 👻" <marceloengecomp@gmail.com>',
-                        to: "marceloengecomp@gmail.com",
-                        subject: "Sua consulta está marcada para daqui a 1hora",
-                        text: "Compareça dentro de 1h para o local confirmado para a sua consulta."
+                        to: app.email,
+                        subject: app.title,
+                        text: "Sua consulta está marcada para daqui a 1 hora. Compareça dentro do prazo especificado no local confirmado para a sua consulta."
                     }).then(() => {
-
+                        console.log("E-mail enviado!")
                     }).catch(error => {
-
+                        console.log(error)
                     })
                 }
             }

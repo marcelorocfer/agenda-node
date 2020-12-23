@@ -64,7 +64,7 @@ app.get("/searchresult", async (req, res) => {
     res.render("list", { apptmnts });
 });
 
-let pollTime = 5000;
+let pollTime = 1000 * 60 * 5;
 
 setInterval(async () => {
     await AppointmentService.SendNotification();
