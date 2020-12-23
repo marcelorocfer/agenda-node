@@ -67,4 +67,10 @@ app.get("/searchresult", async (req, res) => {
     res.render("list", { apptmnts });
 });
 
+let pollTime = 300000;
+
+setInterval(() => {
+    console.log("A task rodou!")
+}, pollTime);
+
 app.listen(8080, () => {});
