@@ -39,7 +39,7 @@ app.post("/create", async (req, res) => {
 });
 
 app.get("/getcalendar", async (req, res) => {
-    let appointments = await AppointmentService.getAll(false);
+    let appointments = await AppointmentService.GetAll(false);
     res.json(appointments);
 });
 
@@ -55,10 +55,7 @@ app.post("/finish", async (req, res) => {
 });
 
 app.get("/list", async (req, res) => {
-
-    // await AppointmentService.Search("555.555.555-55");
-
-    let apptmnts = await AppointmentService.getAll(true);
+    let apptmnts = await AppointmentService.GetAll(true);
     res.render("list", { apptmnts });
 });
 
@@ -67,10 +64,10 @@ app.get("/searchresult", async (req, res) => {
     res.render("list", { apptmnts });
 });
 
-let pollTime = 300000;
+let pollTime = 5000;
 
-setInterval(() => {
-    console.log("A task rodou!")
+setInterval(async () => {
+    await AppointmentService.SendNotification();
 }, pollTime);
 
 app.listen(8080, () => {});

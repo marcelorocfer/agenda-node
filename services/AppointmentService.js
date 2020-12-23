@@ -13,7 +13,8 @@ class AppointmentService {
             cpf,
             date,
             time,
-            finished: false
+            finished: false,
+            notified: false
         });
 
         try {
@@ -25,7 +26,7 @@ class AppointmentService {
         }
     }
 
-    async getAll(showFinished) {
+    async GetAll(showFinished) {
         if(showFinished) {
             return await Appointment.find();
         } else {
@@ -69,6 +70,11 @@ class AppointmentService {
             console.log(error);
             return [];
         }
+    }
+
+    async SendNotification() {
+        let apptmnts = await this.GetAll(false);
+        console.log(apptmnts);
     }
 }
 

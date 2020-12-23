@@ -9,13 +9,13 @@ class AppointmentFactory {
         let minutes = Number.parseInt(simpleAppointment.time.split(":")[1]);
 
         let startDate = new Date(year, month, day, hour, minutes, 0 ,0);
-        // startDate.setHours(startDate.getHours() - 3);
 
         let appointment = {
             id: simpleAppointment._id,
             title: `${simpleAppointment.name} - ${simpleAppointment.description}`,
             start: startDate,
-            end: startDate
+            end: startDate,
+            notified: simpleAppointment.notified
         };
 
         return appointment;
